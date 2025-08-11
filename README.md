@@ -1,3 +1,3 @@
 # C214
 
-Repositório da a matéria de Engenharia de Software
+Repositório da matéria de Engenharia de Software
