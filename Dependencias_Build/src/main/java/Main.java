@@ -14,7 +14,8 @@ public class Main {
         System.out.println("Data e hora formatada: " + dataFormatada);
 
         // Adicionando dias
+        DateTimeFormatter formatadorData = DateTimeFormat.forPattern("dd/MM/yyyy");
         DateTime daquiTresDias = agora.plusDays(1);
-        System.out.println("Amanhã será: " + daquiTresDias.toString(formatador));
+        System.out.println("Amanhã será dia: " + daquiTresDias.toString(formatadorData));
     }
 }
