@@ -8,14 +8,14 @@ import static org.junit.Assert.assertTrue;
 
 public class FilaTest {
     @Test
-    public void testeFilaVazia(){
+    public void testeFila_FilaVazia(){
         Fila<Integer> filaInteiros = new Fila<Integer>();
         boolean vazia = filaInteiros.filaVazia();
         assertTrue(vazia);
     }
 
     @Test
-    public void testeFilaPush(){
+    public void testeFila_Enfileirar(){
         Fila<Integer> filaInteiros = new Fila<Integer>();
         filaInteiros.enfileirar(13);
         int tamanho = filaInteiros.size();
@@ -23,7 +23,7 @@ public class FilaTest {
     }
 
     @Test
-    public void testeFilaPop(){
+    public void testeFila_RemoverFila(){
         Fila<Integer> filaInteiros = new Fila<Integer>();
         filaInteiros.enfileirar(13);
         filaInteiros.removerFila();
@@ -33,13 +33,13 @@ public class FilaTest {
     }
 
     @Test(expected = EmptyStackException.class)
-    public void testePilhaPopException(){
+    public void testeFila_PopException(){
         Fila<Integer> filaInteiros = new Fila<Integer>();
         filaInteiros.removerFila();
     }
 
     @Test
-    public void testeFilaRetorno(){
+    public void testeFila_Retorno(){
         Fila<Integer> filaInteiros = new Fila<Integer>();
         int valor = 13;
         filaInteiros.enfileirar(valor);
