@@ -1,7 +1,6 @@
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class DataTest {
@@ -13,22 +12,18 @@ public class DataTest {
 
     @Before
     public void setup() {
-        data2025_09_01 = new DateTime(2025, 9, 1, 10, 0); // 1 set 2025, 10h00
-        DateTime data2025_09_01_segundo = new DateTime(2025, 9, 1, 10, 0, 10); // 1 set 2025, 10h00m10s
+        data2025_09_01 = new DateTime(2025, 9, 1, 10, 0, 0); // 1 set 2025, 10h00
+        DateTime data2025_09_01_segundo = new DateTime(2025, 9, 1, 10, 0, 10); // 10s depois
         DateTime data2025_10_01 = new DateTime(2025, 10, 1, 9, 0); // 1 out 2025, 9h00
         dataFixa = new Data(data2025_09_01);
         dataErrada = new Data(data2025_10_01);
         dataSegundo = new Data(data2025_09_01_segundo);
     }
 
+    // ---------- TESTES CERTOS ----------
     @Test
     public void testDataAtualCerto() throws Exception {
         assertEquals(data2025_09_01.toString("yyyy-MM-dd'T'HH:mm:ss.SSS"), dataFixa.dataAtual());
-    }
-
-    @Test(expected = Exception.class)
-    public void testDataAtualErrado() throws Exception {
-        dataErrada.dataAtual();
     }
 
     @Test
@@ -36,19 +31,9 @@ public class DataTest {
         assertEquals("01/09/2025", dataFixa.dataFormatada());
     }
 
-    @Test(expected = Exception.class)
-    public void testDataFormatadaErrado() throws Exception {
-        dataErrada.dataFormatada();
-    }
-
     @Test
     public void testDiaFuturoCerto() throws Exception {
         assertEquals("04/09/2025", dataFixa.diaFuturo(3));
-    }
-
-    @Test(expected = Exception.class)
-    public void testDiaFuturoErrado() throws Exception {
-        dataErrada.diaFuturo(3);
     }
 
     @Test
@@ -56,19 +41,9 @@ public class DataTest {
         assertEquals(600, dataFixa.minuto()); // 10h00 => 600 minutos
     }
 
-    @Test(expected = Exception.class)
-    public void testMinutoErrado() throws Exception {
-        dataErrada.minuto();
-    }
-
     @Test
     public void testHoraCerto() throws Exception {
         assertEquals(10, dataFixa.hora());
-    }
-
-    @Test(expected = Exception.class)
-    public void testHoraErrado() throws Exception {
-        dataErrada.hora();
     }
 
     @Test
@@ -76,19 +51,9 @@ public class DataTest {
         assertEquals(36010, dataSegundo.segundo());
     }
 
-    @Test(expected = Exception.class)
-    public void testSegundoErrado() throws Exception {
-        dataFixa.segundo();
-    }
-
     @Test
     public void testAnoCerto() throws Exception {
         assertEquals(2025, dataFixa.ano());
-    }
-
-    @Test(expected = Exception.class)
-    public void testAnoErrado() throws Exception {
-        dataErrada.ano();
     }
 
     @Test
@@ -96,29 +61,14 @@ public class DataTest {
         assertEquals(9, dataFixa.mes());
     }
 
-    @Test(expected = Exception.class)
-    public void testMesErrado() throws Exception {
-        dataErrada.mes();
-    }
-
     @Test
     public void testDiaDoMesCerto() throws Exception {
         assertEquals(1, dataFixa.diaDoMes());
     }
 
-    @Test(expected = Exception.class)
-    public void testDiaDoMesErrado() throws Exception {
-        dataErrada.diaDoMes();
-    }
-
     @Test
     public void testDiaDaSemanaCerto() throws Exception {
         assertEquals("Monday", dataFixa.diaDaSemana());
-    }
-
-    @Test(expected = Exception.class)
-    public void testDiaDaSemanaErrado() throws Exception {
-        dataErrada.diaDaSemana();
     }
 
     @Test
@@ -134,5 +84,46 @@ public class DataTest {
     @Test
     public void testIsDepoisDe() {
         assertTrue(dataErrada.isDepoisDe(dataFixa));
+    }
+
+    // ---------- NOVOS TESTES ERRADOS ----------
+    @Test(expected = Exception.class)
+    public void testDataAtualErrado() throws Exception {
+        dataErrada.dataAtual();
+    }
+
+    @Test(expected = Exception.class)
+    public void testDataFormatadaErrado() throws Exception {
+        dataErrada.dataFormatada();
+    }
+
+    @Test(expected = Exception.class)
+    public void testDiaFuturoErrado() throws Exception {
+        dataErrada.diaFuturo(3);
+    }
+
+    @Test(expected = Exception.class)
+    public void testMinutoErrado() throws Exception {
+        dataErrada.minuto();
+    }
+
+    @Test(expected = Exception.class)
+    public void testHoraErrado() throws Exception {
+        dataErrada.hora();
+    }
+
+    @Test(expected = Exception.class)
+    public void testSegundoErrado() throws Exception {
+        dataFixa.segundo();
+    }
+
+    @Test(expected = Exception.class)
+    public void testMesErrado() throws Exception {
+        dataErrada.mes();
+    }
+
+    @Test(expected = Exception.class)
+    public void testDiaDaSemanaErrado() throws Exception {
+        dataErrada.diaDaSemana();
     }
 }
