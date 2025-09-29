@@ -86,7 +86,7 @@ public class DataTest {
         assertTrue(dataErrada.isDepoisDe(dataFixa));
     }
 
-    // ---------- NOVOS TESTES ERRADOS ----------
+    // ---------- TESTES ERRADOS ----------
     @Test(expected = Exception.class)
     public void testDataAtualErrado() throws Exception {
         dataErrada.dataAtual();
