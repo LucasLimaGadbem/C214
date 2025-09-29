@@ -11,6 +11,7 @@ public class Data {
         this.agora = new DateTime();
     }
 
+    // Construtor com data fixa
     public Data(DateTime data) {
         this.agora = data;
     }
@@ -24,8 +25,6 @@ public class Data {
         return atual;
     }
 
-
-
     // Retorna data formatada
     public String dataFormatada() throws Exception {
         String formatada = formatandoData(agora);
@@ -34,7 +33,6 @@ public class Data {
         }
         return formatada;
     }
-
 
     // Formata a data no padrão dd/MM/yyyy
     public String formatandoData(DateTime data) {
@@ -52,7 +50,6 @@ public class Data {
         return resultado;
     }
 
-
     // Retorna o segundo do dia atual
     public int segundo() throws Exception {
         if (agora.getSecondOfDay() != 36010) {
@@ -61,10 +58,9 @@ public class Data {
         return agora.getSecondOfDay();
     }
 
-
     // Retorna o minuto do dia atual
     public int minuto() throws Exception {
-        if(agora.getMinuteOfDay() == 540){
+        if (agora.getMinuteOfDay() == 540) {
             throw new Exception();
         }
         return agora.getMinuteOfDay();
@@ -78,4 +74,45 @@ public class Data {
         return agora.getHourOfDay();
     }
 
+    public int ano() throws Exception {
+        if (agora.getYear() != 2025) {
+            throw new Exception("Ano incorreto.");
+        }
+        return agora.getYear();
+    }
+
+    public int mes() throws Exception {
+        if (agora.getMonthOfYear() != 9) {
+            throw new Exception("Mês incorreto.");
+        }
+        return agora.getMonthOfYear();
+    }
+
+    public int diaDoMes() throws Exception {
+        if (agora.getDayOfMonth() != 1) {
+            throw new Exception("Dia incorreto.");
+        }
+        return agora.getDayOfMonth();
+    }
+
+    public String diaDaSemana() throws Exception {
+        String diaSemana = agora.dayOfWeek().getAsText();
+        if (!diaSemana.equals("Monday")) {
+            throw new Exception("Dia da semana incorreto.");
+        }
+        return diaSemana;
+    }
+
+    public boolean isFimDeSemana() {
+        int dow = agora.getDayOfWeek();
+        return dow == 6 || dow == 7; // sábado ou domingo
+    }
+
+    public boolean isAntesDe(Data outra) {
+        return agora.isBefore(outra.agora);
+    }
+
+    public boolean isDepoisDe(Data outra) {
+        return agora.isAfter(outra.agora);
+    }
 }
