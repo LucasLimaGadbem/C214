@@ -54,7 +54,7 @@ jobs:
         path: target/*.jar
   
   
-   notificacao:
+  notificacao:
     runs-on: ubuntu-latest
     needs: [testes, build]
     steps:
