@@ -54,12 +54,15 @@ jobs:
         path: target/*.jar
   
   
-  notificacao:
+   notificacao:
     runs-on: ubuntu-latest
     needs: [testes, build]
     steps:
-    - name: Enviar notificação por e-mail
-      run: |
-        echo "Pipeline executado com sucesso!" | mail -s "Notificação CI/CD" $EMAIL_DESTINO
-      env:
-        EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
+      - name: Instalar mailutils
+        run: sudo apt-get update && sudo apt-get install -y mailutils
+
+      - name: Enviar notificação por e-mail
+        run: |
+          echo "Pipeline executado com sucesso!" | mail -s "Notificação CI/CD" $EMAIL_DESTINO
+        env:
+          EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
