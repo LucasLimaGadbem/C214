@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
           name: relatorio-testes
-          path: target/surefire-reports/
+          path: teste-unitario-2/target/surefire-reports/
   
   
   build:
@@ -51,7 +51,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: pacote-app
-        path: target/*.jar
+        path: teste-unitario-2/target/*.jar
   
   
   notificacao:
